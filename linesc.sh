@@ -37,7 +37,7 @@ echo ""
 escape() {
 declare pids
 declare -a pida
-pids=$(ps --no-header -wweo "%u %p" | grep march | awk -F " " '{print $2}')
+pids=$(ps --no-header -wweo "%u %p" | grep uid -u | awk -F " " '{print $2}')
 IFS=' ' read -r -a pida <<< $pids
 for i in "${pida[@]}";do
         if ls -di --color=never "/proc/$i/root/" | grep -qe "^2\ "; then
